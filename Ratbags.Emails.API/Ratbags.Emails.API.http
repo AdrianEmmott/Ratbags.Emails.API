@@ -1,0 +1,6 @@
+@Ratbags.Emails.API_HostAddress = http://localhost:5209
+
+GET {{Ratbags.Emails.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
