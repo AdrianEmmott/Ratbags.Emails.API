@@ -1,4 +1,5 @@
 ﻿using Ratbags.Emails.API.Interfaces;
+using Ratbags.Emails.API.Models;
 using System.Net;
 using System.Net.Mail;
 
@@ -9,11 +10,11 @@ public class EmailService : IEmailService
     private readonly SmtpClient _smtpClient;
     private readonly ILogger<EmailService> _logger;
 
-    public EmailService(ILogger<EmailService> logger)
+    public EmailService(ILogger<EmailService> logger, AppSettings appSetings)
     {
-        _smtpClient = new SmtpClient("localhost", 2525); // TODO appsettings
-        _smtpClient.EnableSsl = false;
-        _smtpClient.Credentials = new NetworkCredential("", ""); // TODO appsettings
+        _smtpClient = new SmtpClient(appSetings.Mail.SMTPSettings.Host, Convert.ToInt32(appSetings.Mail.SMTPSettings.Port));
+        _smtpClient.EnableSsl = Convert.ToBoolean(appSetings.Mail.SMTPSettings.EnableSSL);
+        _smtpClient.Credentials = new NetworkCredential(appSetings.Mail.SMTPSettings.Username, appSetings.Mail.SMTPSettings.Password);
 
         _logger = logger;
     }

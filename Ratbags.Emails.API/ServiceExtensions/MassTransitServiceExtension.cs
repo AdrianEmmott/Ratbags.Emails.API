@@ -1,12 +1,12 @@
 ﻿using MassTransit;
-using Ratbags.Core.Settings;
+using Ratbags.Emails.API.Models;
 using Ratbags.Emails.Messaging.Consumers;
 
 namespace Ratbags.Comments.API.ServiceExtensions;
 
 public static class MassTransitServiceExtension
 {
-    public static IServiceCollection AddMassTransitWithRabbitMqServiceExtension(this IServiceCollection services, AppSettingsBase appSettings)
+    public static IServiceCollection AddMassTransitWithRabbitMqServiceExtension(this IServiceCollection services, AppSettings appSettings)
     {
         services.AddMassTransit(x =>
         {

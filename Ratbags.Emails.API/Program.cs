@@ -1,6 +1,7 @@
 using Ratbags.ACcounts.API.ServiceExtensions;
 using Ratbags.Comments.API.ServiceExtensions;
 using Ratbags.Core.Settings;
+using Ratbags.Emails.API.Models;
 using Ratbags.Emails.API.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +12,8 @@ if (builder.Environment.IsDevelopment())
     builder.Configuration.AddUserSecrets<Program>();
 }
 
-builder.Services.Configure<AppSettingsBase>(builder.Configuration);
-var appSettings = builder.Configuration.Get<AppSettingsBase>() ?? throw new Exception("Appsettings.json missing");
+builder.Services.Configure<AppSettings>(builder.Configuration);
+var appSettings = builder.Configuration.Get<AppSettings>() ?? throw new Exception("Appsettings.json missing");
 
 var certificatePath = string.Empty;
 var certificateKeyPath = string.Empty;
