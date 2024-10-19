@@ -7,10 +7,10 @@ namespace Ratbags.Emails.Messaging.Consumers;
 public class RegisterConfirmEmailConsumer : IConsumer<SendRegisterConfirmEmailRequest>
 {
     private readonly ILogger<RegisterConfirmEmailConsumer> _logger;
-    private readonly IEmailService _emailService;
+    private readonly IAccountsEmailService _emailService;
 
     public RegisterConfirmEmailConsumer(
-        IEmailService emailService,
+        IAccountsEmailService emailService,
         ILogger<RegisterConfirmEmailConsumer> logger)
     {
         _emailService = emailService; 

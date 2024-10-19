@@ -9,7 +9,7 @@ public static class DIServiceExtension
 {
     public static IServiceCollection AddDIServiceExtension(this IServiceCollection services)
     {
-        services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped<IAccountsEmailService, AccountsEmailService>();
 
         // expose appSettings as IOptions<T> singleton
         services.AddSingleton(x => x.GetRequiredService<IOptions<AppSettings>>().Value);

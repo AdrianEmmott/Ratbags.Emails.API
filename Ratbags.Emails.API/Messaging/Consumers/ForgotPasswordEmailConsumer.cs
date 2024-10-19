@@ -7,10 +7,10 @@ namespace Ratbags.Emails.Messaging.Consumers;
 public class ForgotPasswordEmailConsumer : IConsumer<SendForgotPasswordEmailRequest>
 {
     private readonly ILogger<ForgotPasswordEmailConsumer> _logger;
-    private readonly IEmailService _emailService;
+    private readonly IAccountsEmailService _emailService;
 
     public ForgotPasswordEmailConsumer(
-        IEmailService emailService,
+        IAccountsEmailService emailService,
         ILogger<ForgotPasswordEmailConsumer> logger)
     {
         _emailService = emailService; 

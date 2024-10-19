@@ -9,6 +9,7 @@ namespace Ratbags.Emails.API.Models
 
     public class Mail
     {
+        public string NoReplyEmail { get; set; } = string.Empty;
         public SMTPSettings SMTPSettings { get; set; } = new SMTPSettings();
     }
 
