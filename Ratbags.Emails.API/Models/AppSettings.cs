@@ -5,6 +5,8 @@ namespace Ratbags.Emails.API.Models;
 public class AppSettings : AppSettingsBase
 {
     public Mail Mail { get; set; } = new Mail();
+
+    public MessagingExtensions MessagingExtensions { get; set; } = default!;
 }
 
 public class Mail
@@ -20,4 +22,9 @@ public class SMTPSettings
     public bool EnableSSL { get; set; }
     public string Username { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
+}
+
+public class MessagingExtensions
+{
+    public string ForgotPasswordEmailTopic { get; set; } = default!;
 }

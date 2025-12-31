@@ -31,7 +31,7 @@ public class AccountsEmailService : IAccountsEmailService
         {
             // TODO needs a template
             Subject = "Confirm your email address",
-            Body = $@"<p>hello {name}!</p><p><a href='{confirmUrl}' target='_blank'>Confirm your email address </a> to complate the registration process</a></p>"
+            Body = $@"<p>Hello {name},</p><p><a href='{confirmUrl}' target='_blank'>Confirm your email address </a> to complete the registration process</a></p>"
         };
 
         try

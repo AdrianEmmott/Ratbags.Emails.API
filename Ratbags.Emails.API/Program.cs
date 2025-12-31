@@ -1,6 +1,5 @@
+using Azure.Messaging.ServiceBus;
 using Ratbags.ACcounts.API.ServiceExtensions;
-using Ratbags.Comments.API.ServiceExtensions;
-using Ratbags.Core.Settings;
 using Ratbags.Emails.API.Models;
 using Ratbags.Emails.API.ServiceExtensions;
 
@@ -35,7 +34,6 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 });
 
 // add services
-// cors
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
@@ -47,6 +45,11 @@ builder.Services.AddCors(options =>
             .AllowCredentials());
 });
 
+builder.Services.AddSingleton(serviceProvider =>
+{
+    return new ServiceBusClient(appSettings.Messaging.ASB.Connection);
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -56,7 +59,6 @@ builder.Services.AddSwaggerGen(c =>
 
 // add service extensions
 builder.Services.AddDIServiceExtension();
-builder.Services.AddMassTransitWithRabbitMqServiceExtension(appSettings);
 builder.Services.AddAuthenticationServiceExtension(appSettings);
 
 var app = builder.Build();
