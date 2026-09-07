@@ -1,5 +1,5 @@
-using Azure.Messaging.ServiceBus;
 using Ratbags.ACcounts.API.ServiceExtensions;
+using Ratbags.Core.Messaging.ASB;
 using Ratbags.Emails.API.Models;
 using Ratbags.Emails.API.ServiceExtensions;
 
@@ -47,10 +47,7 @@ builder.Services.AddCors(options =>
             .AllowCredentials());
 });
 
-builder.Services.AddSingleton(serviceProvider =>
-{
-    return new ServiceBusClient(appSettings.Messaging.ASB.Connection);
-});
+builder.Services.AddRatbagsServiceBus(appSettings);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

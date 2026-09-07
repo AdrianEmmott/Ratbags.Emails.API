@@ -7,6 +7,13 @@ public class AppSettings : AppSettingsBase
     public Mail Mail { get; set; } = new Mail();
 
     public MessagingExtensions MessagingExtensions { get; set; } = default!;
+
+    public Frontend Frontend { get; set; } = new Frontend();
+}
+
+public class Frontend
+{
+    public string BaseUrl { get; set; } = string.Empty;
 }
 
 public class Mail

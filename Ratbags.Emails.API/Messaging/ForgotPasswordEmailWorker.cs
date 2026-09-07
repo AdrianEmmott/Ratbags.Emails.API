@@ -1,17 +1,19 @@
-﻿using Ratbags.Core.Messaging.ASB.RequestReponse;
+﻿using Azure.Messaging.ServiceBus;
+using Ratbags.Core.Messaging.ASB.RequestReponse;
 using Ratbags.Emails.API.Models;
 
 namespace Ratbags.Emails.API.Messaging;
 
-public sealed class ForgotPasswordEmailWorker 
+public sealed class ForgotPasswordEmailWorker
     : ServiceBusRequestReplyWorker<ForgotPasswordEmailRequest, ForgotPasswordEmailResponse>
 {
     public ForgotPasswordEmailWorker(
         AppSettings appSettings,
+        ServiceBusClient sbClient,
         IServiceScopeFactory scopeFactory,
-        ILogger<ForgotPasswordEmailWorker> logger) 
+        ILogger<ForgotPasswordEmailWorker> logger)
         : base(
-            appSettings.Messaging.ASB.Connection,
+            sbClient,
             appSettings.MessagingExtensions.ForgotPasswordEmailTopic,
             appSettings.Messaging.ASB.ResponseSubscription,
             scopeFactory,

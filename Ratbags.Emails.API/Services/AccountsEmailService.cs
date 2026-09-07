@@ -48,8 +48,7 @@ public class AccountsEmailService : IAccountsEmailService
 
     public async Task ForgotPasswordSendAsync(string name, string email, Guid userId, string token)
     {
-        // TODO appsettings for the domain
-        var confirmUrl = $"https://localhost:4200/reset-password/{userId}/{token}";
+        var confirmUrl = $"{_appSettings.Frontend.BaseUrl}/reset-password/{userId}/{token}";
 
         var mailMessage = new MailMessage(_appSettings.Mail.NoReplyEmail, email)
         {

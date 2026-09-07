@@ -1,5 +1,5 @@
-# build with .net 8.0 sdk image
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# build with .net sdk image
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # github pat for packages
@@ -24,7 +24,7 @@ FROM build AS publish
 RUN dotnet publish "Ratbags.Emails.API.csproj" -c Release -o /app/publish
 
 # run app with .net 8.0 runtime image 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
 EXPOSE 5077
 EXPOSE 7158
